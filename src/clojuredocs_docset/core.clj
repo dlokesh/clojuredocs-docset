@@ -1,7 +1,6 @@
 (ns clojuredocs-docset.core
   (:require [clojure.java.jdbc :as j]
-  			[clojure.java.jdbc.sql :as sql]
-        [clansi.core :as cl])
+  			[clojure.java.jdbc.sql :as sql])
   (:use [clojure.java.shell :only [sh]])
   (:import [org.jsoup Jsoup]
   		   [java.sql BatchUpdateException DriverManager

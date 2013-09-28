@@ -6,8 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
   				 [org.jsoup/jsoup "1.7.2"]
   				 [org.clojure/java.jdbc "0.3.0-alpha4"]
-  				 [org.xerial/sqlite-jdbc "3.7.2"]
-  				 [myguidingstar/clansi "1.3.0"]]
+  				 [org.xerial/sqlite-jdbc "3.7.2"]]
   :profiles {:dev {:dependencies [[midje "1.5.1"]]}}
   :plugins [[lein-midje "3.0.0"]]
   :main clojuredocs-docset.core)
