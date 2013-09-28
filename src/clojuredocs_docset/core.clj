@@ -1,18 +1,19 @@
 (ns clojuredocs-docset.core
   (:require [clojure.java.jdbc :as j]
   			[clojure.java.jdbc.sql :as sql])
-  (:use [clojure.java.shell :only [sh]])
+  (:use [clojure.java.shell :only [sh]]
+        [clojure.java.io :only [resource]])
   (:import [org.jsoup Jsoup]
   		   [java.sql BatchUpdateException DriverManager
             PreparedStatement ResultSet SQLException Statement Types])
   (:gen-class))
 
-(def index-file-path "clojure-docs.docset/Contents/Resources/docSet.dsidx")
-(def html-file-path "clojure-docs.docset/Contents/Resources/Documents/clojuredocs.org/clojure_core.html")
+(def user-dir (System/getProperty "user.dir"))
+(def conf (read-string (slurp (resource "config.clj"))))
 
 (def sqlite-db {:classname "org.sqlite.JDBC"
 			          :subprotocol "sqlite"
-                :subname index-file-path})
+                :subname (:db-file-path conf)})
 
 (defn print-progress [percent text]
   (let [x (int (/ percent 2))
@@ -26,12 +27,12 @@
 
 (defn mirror-clojuredocs []
   (print-progress 15 "Mirroring clojuredocs.org/clojure_core")
-  (sh "httrack" "http://clojuredocs.org/clojure_core" "-n" "--path" "httrack-clojuredocs.org"))
+  (sh apply (:httrack conf)))
 
 (defn copy-html-to-docset []
   (print-progress 50 "Copying clojuredocs.org to docset")
-  (sh "mkdir" "-p" "clojure-docs.docset/Contents/Resources/Documents")
-  (sh "cp" "-r" "httrack-clojuredocs.org/clojuredocs.org" "clojure-docs.docset/Contents/Resources/Documents"))
+  (sh apply (:mkdir-docset conf))
+  (sh apply (:cp-html-to-docset conf)))
 
 (defn clear-search-index []
   (print-progress 60 "Clearing index")
@@ -49,7 +50,7 @@
 
 (defn generate-search-index []
   (print-progress 75 "Generating index")
-  (let [html-content (slurp (str (System/getProperty "user.dir") "/" html-file-path))
+  (let [html-content (slurp (str user-dir "/" (:html-file-path conf)))
         document (Jsoup/parse html-content)
         rows (map search-index-attributes (.select document ".function a"))]            
     (populate-search-index rows)))
