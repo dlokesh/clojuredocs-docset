@@ -1,5 +1,5 @@
 (defproject clojuredocs-docset "0.1.0"
-  :description "ClojureDocs.org dash docset generator"
+  :description "Dash docset generator for ClojureDocs.org"
   :url "http://github.com/dlokesh/clojuredocs-docset"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
