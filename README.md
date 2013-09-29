@@ -1,4 +1,4 @@
-# [Dash][dash] docset generator for [ClojureDocs.org][clojuredocs]
+## [Dash][dash] docset generator for [ClojureDocs.org][clojuredocs]
 
 Performs the following:
 
