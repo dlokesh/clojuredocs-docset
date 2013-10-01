@@ -38,9 +38,10 @@
   (apply sh (:httrack conf)))
 
 (defn create-docset-template []
-    (.mkdirs (file-ref (:docset-template conf)))
-    (resource-copy "icon.png" "clojure-docs.docset/icon.png")
-    (resource-copy "Info.plist" "clojure-docs.docset/Contents/Info.plist"))
+  (print-progress 40 "Creating docset template")
+  (.mkdirs (file-ref (:docset-template conf)))
+  (resource-copy "icon.png" "clojure-docs.docset/icon.png")
+  (resource-copy "Info.plist" "clojure-docs.docset/Contents/Info.plist"))
 
 (defn copy-html-to-docset []
   (print-progress 50 "Copying clojuredocs.org to docset")
