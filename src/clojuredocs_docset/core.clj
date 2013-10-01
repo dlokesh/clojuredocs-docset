@@ -68,7 +68,7 @@
     (populate-search-index rows)))
 
 (defn generate-docset []
-  ; (mirror-clojuredocs)
+  (mirror-clojuredocs)
   (create-docset-template)
   (copy-html-to-docset)
   (clear-search-index)
