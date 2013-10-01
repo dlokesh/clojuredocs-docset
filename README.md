@@ -16,11 +16,15 @@ Install the following dependencies:
 
 ## Usage
 
-Checkout source and run:
+Download [uberjar][releases] and run:
+
+    $ java -jar clojuredocs-docset-<version>-standalone.jar
+
+or clone source to customize [HTTrack][httrack] in config.clj and run:
 
     $ lein run
     
-You can now import clojure-docs.docset into [Dash][dash].
+Import the generated clojure-docs.docset into [Dash][dash].
 
 ## License
 
@@ -31,3 +35,4 @@ Distributed under the Eclipse Public License, the same as Clojure.
 [clojuredocs]: http://clojuredocs.org
 [dash]: http://kapeli.com/dash
 [httrack]: http://www.httrack.com
+[releases]: https://github.com/dlokesh/clojuredocs-docset/releases
