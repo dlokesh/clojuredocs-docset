@@ -2,12 +2,9 @@
   (:require [clojure.java.jdbc :as j]
   			[clojure.java.jdbc.sql :as sql])
   (:use [clojure.java.shell :only [sh]]
-        [clojure.java.io :only [reader writer file resource copy]])
+        [clojure.java.io :only [file resource]])
   (:import [org.jsoup Jsoup]
-           [org.apache.commons.io FileUtils]
-  		     [java.sql BatchUpdateException DriverManager
-            PreparedStatement ResultSet SQLException Statement Types]
-           [java.io File])
+           [org.apache.commons.io FileUtils])
   (:gen-class))
 
 (def user-dir (System/getProperty "user.dir"))
