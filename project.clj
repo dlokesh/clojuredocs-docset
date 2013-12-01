@@ -1,4 +1,4 @@
-(defproject clojuredocs-docset "0.1.0"
+(defproject clojuredocs-docset "0.1.1"
   :description "Dash docset generator for ClojureDocs.org"
   :url "http://github.com/dlokesh/clojuredocs-docset"
   :license {:name "Eclipse Public License"

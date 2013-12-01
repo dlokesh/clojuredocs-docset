@@ -56,7 +56,9 @@
     (apply j/insert-records :searchIndex rows)))
 
 (defn search-index-attributes [element]
-  {:name (.text element) :type "Function" :path (.attr element "href")})
+  {:name (.text element) 
+   :type "Function" 
+   :path (str "clojuredocs.org/" (.attr element "href"))})
 
 (defn generate-search-index []
   (print-progress 75 "Generating index")
