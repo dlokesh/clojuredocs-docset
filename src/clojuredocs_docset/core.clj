@@ -60,11 +60,17 @@
    :type "Function" 
    :path (str "clojuredocs.org/" (.attr element "href"))})
 
+(defn parse-path [index-html-path]
+  (let [parsed (->> index-html-path
+                    (str user-dir "/")
+                    slurp
+                    Jsoup/parse)]
+    (map search-index-attributes (.select parsed ".dl-row .name a"))))
+
 (defn generate-search-index []
   (print-progress 75 "Generating index")
-  (let [html-content (slurp (str user-dir "/" (:index-html-path conf)))
-        document (Jsoup/parse html-content)
-        rows (map search-index-attributes (.select document ".dl-row .name a"))]
+  (let [paths (:index-html-paths conf)
+        rows (mapcat parse-path paths)]
     (populate-search-index rows)))
 
 (defn generate-docset []
