@@ -31,7 +31,7 @@
   (flush)))
 
 (defn mirror-clojuredocs []
-  (print-progress 15 "Mirroring clojuredocs.org/clojure_core")
+  (print-progress 15 (str "Mirroring " (second (:httrack conf))))
   (apply sh (:httrack conf)))
 
 (defn create-docset-template []
@@ -64,7 +64,7 @@
   (print-progress 75 "Generating index")
   (let [html-content (slurp (str user-dir "/" (:index-html-path conf)))
         document (Jsoup/parse html-content)
-        rows (map search-index-attributes (.select document ".function a"))]            
+        rows (map search-index-attributes (.select document ".dl-row .name a"))]
     (populate-search-index rows)))
 
 (defn generate-docset []
