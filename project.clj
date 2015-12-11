@@ -3,8 +3,8 @@
   :url "http://github.com/dlokesh/clojuredocs-docset"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.5.1"]
-        				 [org.jsoup/jsoup "1.7.2"]
+  :dependencies [[org.clojure/clojure "1.7.0"]
+        				 [org.jsoup/jsoup "1.8.3"]
         				 [org.clojure/java.jdbc "0.3.0-alpha4"]
         				 [org.xerial/sqlite-jdbc "3.7.2"]
                  [commons-io "2.4"]]

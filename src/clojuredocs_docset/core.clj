@@ -58,17 +58,19 @@
 (defn search-index-attributes [element]
   {:name (.text element) 
    :type "Function" 
-   :path (str "clojuredocs.org/" (.attr element "href"))})
+   :path (str "clojuredocs.org" (subs (.attr element "href") 2))})
 
 (defn generate-search-index []
   (print-progress 75 "Generating index")
   (let [html-content (slurp (str user-dir "/" (:index-html-path conf)))
         document (Jsoup/parse html-content)
-        rows (map search-index-attributes (.select document ".function a"))]            
+        rows (map 
+               search-index-attributes 
+               (.select (.getAllElements document) ".col-sm-10 a"))]            
     (populate-search-index rows)))
 
 (defn generate-docset []
-  (mirror-clojuredocs)
+  ;(mirror-clojuredocs)
   (create-docset-template)
   (copy-html-to-docset)
   (clear-search-index)
